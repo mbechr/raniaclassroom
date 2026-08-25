@@ -1,10 +1,10 @@
-// IXL UK English - 100% Self-Contained Interactive Learning Portal & Practice Terminal
+// RCM UK English - 100% Self-Contained Interactive Learning Portal & Practice Terminal
 // Zero External Redirects - Complete Offline Knowledge Base
 
-class IXLApp {
+class RCMApp {
   constructor() {
-    this.curriculum = IXL_DATA.curriculum || {};
-    this.standards = IXL_DATA.standards || {};
+    this.curriculum = (typeof RCM_DATA !== 'undefined' ? RCM_DATA.curriculum : (typeof IXL_DATA !== 'undefined' ? IXL_DATA.curriculum : {}));
+    this.standards = (typeof RCM_DATA !== 'undefined' ? RCM_DATA.standards : (typeof IXL_DATA !== 'undefined' ? IXL_DATA.standards : {}));
     
     // Skill Registry map for fast, reliable lookup with zero escaping bugs
     this.skillRegistry = {};
@@ -15,7 +15,7 @@ class IXLApp {
       currentYear: 'Year 1',
       currentKeyStage: 'all',
       searchQuery: '',
-      theme: localStorage.getItem('ixl_theme') || 'dark',
+      theme: localStorage.getItem('rcm_theme') || localStorage.getItem('ixl_theme') || 'dark',
       
       // Selected Skill for Internal Lesson & Practice
       activeSkillId: null,
@@ -39,7 +39,7 @@ class IXLApp {
       },
       
       // Persistent Progress in LocalStorage
-      userProgress: JSON.parse(localStorage.getItem('ixl_user_progress') || '{}')
+      userProgress: JSON.parse(localStorage.getItem('rcm_user_progress') || localStorage.getItem('ixl_user_progress') || '{}')
     };
 
     this.init();
@@ -88,7 +88,7 @@ class IXLApp {
 
   toggleTheme() {
     this.state.theme = this.state.theme === 'dark' ? 'light' : 'dark';
-    localStorage.setItem('ixl_theme', this.state.theme);
+    localStorage.setItem('rcm_theme', this.state.theme);
     this.applyTheme();
   }
 
@@ -549,6 +549,7 @@ class IXLApp {
       lastPracticed: Date.now(),
       mastered: this.state.practice.score >= 100
     };
+    localStorage.setItem('rcm_user_progress', JSON.stringify(this.state.userProgress));
     localStorage.setItem('ixl_user_progress', JSON.stringify(this.state.userProgress));
 
     this.updateUserStatsDisplay();
@@ -1030,5 +1031,5 @@ class IXLApp {
 
 // Initialise
 window.addEventListener('DOMContentLoaded', () => {
-  window.app = new IXLApp();
+  window.app = new RCMApp();
 });
