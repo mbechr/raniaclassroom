@@ -1,4 +1,4 @@
-// IXL UK English - Comprehensive Offline Knowledge Base & Adaptive Question Generator
+// RCM UK English - Comprehensive Offline Knowledge Base & Adaptive Question Generator
 // 100% Self-Contained with Zero External Dependencies
 
 const LESSON_KNOWLEDGE_BASE = {
