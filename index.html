@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr" data-theme="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>IXL UK English — Interactive Learning Cockpit</title>
+  
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800;900&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;600;700;800&display=swap" rel="stylesheet">
+  
+  <!-- Stylesheets -->
+  <link rel="stylesheet" href="styles.css">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>⚡</text></svg>">
+</head>
+<body>
+
+  <!-- Confetti Celebration Canvas -->
+  <canvas id="confettiCanvas"></canvas>
+
+  <!-- Horizontal App Header -->
+  <header class="app-header">
+    <!-- Top Row: Brand, Nav Modules, Search & Tools -->
+    <div class="header-top-row">
+      <a href="#" class="brand-wrapper" onclick="window.app.switchTab('curriculum'); return false;">
+        <div class="brand-icon">IXL</div>
+        <div class="brand-title-group">
+          <h1>IXL ENGLISH UK</h1>
+          <span>NATIONAL CURRICULUM COCKPIT</span>
+        </div>
+      </a>
+
+      <!-- Horizontal Module Navigation -->
+      <nav class="top-nav-tabs-bar">
+        <button class="top-nav-btn active" data-tab="curriculum">
+          <span>📚</span>
+          <span>Curriculum Matrix</span>
+        </button>
+        <button class="top-nav-btn" data-tab="practice">
+          <span>⚡</span>
+          <span>Practice Console</span>
+        </button>
+        <button class="top-nav-btn" data-tab="standards">
+          <span>🏛️</span>
+          <span>DfE Standards</span>
+        </button>
+        <button class="top-nav-btn" data-tab="awards">
+          <span>🏆</span>
+          <span>Honours & Badges</span>
+        </button>
+        <button class="top-nav-btn" data-tab="analytics">
+          <span>📊</span>
+          <span>Telemetry</span>
+        </button>
+        <button class="top-nav-btn" data-tab="worksheets">
+          <span>📝</span>
+          <span>Assessment Studio</span>
+        </button>
+      </nav>
+
+      <!-- Tools & HUD -->
+      <div class="header-tools-group">
+        <div class="score-badge-hud" title="Mastered Skills (100 SmartScore)">
+          <span style="color: var(--accent-amber);">★</span>
+          <span>MASTERED:</span>
+          <span id="userStarCount" style="color: var(--accent-primary); font-weight: 800;">0</span>
+        </div>
+
+        <button class="tool-icon-btn" id="themeToggleBtn" title="Toggle Theme (Dark / Light)">
+          <span id="themeIcon">☀️</span>
+        </button>
+      </div>
+    </div>
+
+    <!-- Bottom Controls Row: Horizontal Year Selector & Live Search -->
+    <div class="header-controls-row">
+      <div class="horizontal-year-selector">
+        <span style="font-family: var(--font-mono); font-size: 0.75rem; font-weight: 700; color: var(--text-tertiary); text-transform: uppercase;">Academic Tier:</span>
+        <select id="horizontalYearSelect" class="year-dropdown-select" onchange="window.app.selectYear(this.value)">
+          <!-- Populated by app.js -->
+        </select>
+      </div>
+
+      <div class="header-search-box">
+        <span class="search-icon-fixed">🔍</span>
+        <input type="text" id="globalSearchInput" class="header-search-input" placeholder="Search 2,037 skills, syntax, vocabulary, phonics...">
+      </div>
+    </div>
+  </header>
+
+  <!-- Full-Width Main Viewport -->
+  <main class="main-viewport" id="mainContentArea">
+    <!-- Rendered dynamically by app.js -->
+  </main>
+
+  <!-- Offline Script Engines -->
+  <script src="data.js"></script>
+  <script src="lessons_engine.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>
